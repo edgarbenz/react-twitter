@@ -1,0 +1,33 @@
+{
+    "users": [
+        {
+            "email": "correo@test.com",
+            "password": "$2b$10$4P20BG5pMmD82Sb5XBgrA./qSZn1s8wsfNdbarsOw0ZCYGABaF9gi",
+            "username": "@tweeterman",
+            "name": "Tweeter Man",
+            "id": 1
+        },
+        {
+            "email": "mail@test.com",
+            "username": "@tweeterking",
+            "password": "$2b$10$4P20BG5pMmD82Sb5XBgrA.25x4fIFVkEXDnvc2TDFBgizewK7fY3S",
+            "name": "Tweeter King",
+            "id": 2
+        }
+    ],
+    "tweets": [
+        {
+            "content": "Marty McFly returns with new film of classical Back to the Future",
+            "userId": 1,
+            "updateAt": "2021-03-15T18:23:57.579Z",
+            "id": 1
+        },
+        {
+            "content": "Aca las tortas, Cine Mexicano de Oro",
+            "userId": 1,
+            "updateAt": "2021-03-15T18:24:56.773Z",
+            "id": 2
+        }
+    ],
+    "likes": []
+}
