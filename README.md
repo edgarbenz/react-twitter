@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+First of all, you need to install react that way:
+
+`npx create-react-app react-twitter`
+
+2. Run test DataBase: inside of the application directory , change to BD directory:
+
+`cd sparrest`
+`npm start`
+
+3. Run react application with developer mode
+
+`npm start`
+
+
 
 ## Available Scripts
 
