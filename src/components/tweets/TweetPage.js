@@ -1,7 +1,7 @@
 import React from 'react';
 import getTweets from '../../api/tweet';
 import classnames from 'classnames';
-import stylesModule from './TweetPage.modules.css';
+import stylesModule from './TweetPage.module.css';
 
 console.log('stylesModule= ',stylesModule);
 
@@ -31,12 +31,13 @@ const TweetsPage = ( {className} ) => {
         <li style={liStyle} onClick={() => alert('Enlace a detalle ... ')} key= {tweet.id} >{tweet.content}</li>
     ));
 
-    const styles = { color: tweets.length > 2 ? 'red' : 'green' }
+    //const styles = { color: tweets.length > 2 ? 'red' : 'green' }
 
     console.log("tweetsHTML= ",tweetsHTML);
+    console.log('stylesModule= ',stylesModule);
 
     return ( 
-        <div className= { classnames('tweetsPage',className) }>
+        <div className= { classnames(stylesModule.tweetsPage,className) }>
             <ul>
                 {tweetsHTML}
             </ul>

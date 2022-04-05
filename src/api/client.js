@@ -7,8 +7,7 @@ const client = axios.create( {baseURL:process.env.REACT_APP_API_BASE_URL} )
                                     //and.. REACT_APP_API_BASE_URL is a environment variable
 console.log("process.env", process.env);
 
-console.log('client.interceptors= ', client.interceptors)
-console.log('client.interceptors.response= ', client.interceptors.response)
+//console.log('client.interceptors.response= ', client.interceptors.response)
 client.interceptors.response.use(response => response.data);
 
 export default client;
