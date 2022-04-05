@@ -4,9 +4,15 @@ First of all, you need to install react that way:
 
 `npx create-react-app react-twitter`
 
+Also, you need to install axios (inside of react-twitter directory):
+
+`npm  i axios`
+
 2. Run test DataBase: inside of the application directory , change to BD directory:
 
 `cd sparrest`
+
+Run the test Database
 `npm start`
 
 3. Run react application with developer mode

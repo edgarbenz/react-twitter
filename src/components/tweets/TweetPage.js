@@ -1,35 +1,67 @@
-const tweets = [
-    {
-        "content": "Marty McFly returns with new film of classical Back to the Future",
-        "userId": 1,
-        "updateAt": "2021-03-15T18:23:57.579Z",
-        "id": 1
-    },
-    {
-        "content": "Aca las tortas, Cine Mexicano de Oro",
-        "userId": 1,
-        "updateAt": "2021-03-15T18:24:56.773Z",
-        "id": 2
-    }
-]
+import React from 'react';
+import getTweets from '../../api/tweet';
+import classnames from 'classnames';
+import stylesModule from './TweetPage.modules.css';
 
-export default function TweetsPage() {
-    const mostrarTweets = tweets.map ( (tweet) => {
-        return <li key= {tweet.id}>{tweet.content}</li>
-    });
-    console.log(mostrarTweets);
-    return (
-        <div className="tweetsPage">
+console.log('stylesModule= ',stylesModule);
+
+const TweetsPage = ( {className} ) => {
+    const [tweets, setTweets]= React.useState([]);
+
+    //React.useEffect( () => {
+    //    getTweets().then(respuesta => {
+    //        setTweets(respuesta.data);
+    //    });
+    //},[]);
+    React.useEffect( () => {
+        console.log("entro react.useEffect")
+        getTweets().then(datos => {
+            setTweets(datos);
+        });
+    },[]);
+
+
+    console.log("tweets= ",tweets);
+
+    const liStyle = {
+        color: 'blue'
+    }
+
+    const tweetsHTML= tweets.map( (tweet) => (  //here the interceptor works: client.interceptors.response.use(response => response.data);
+        <li style={liStyle} onClick={() => alert('Enlace a detalle ... ')} key= {tweet.id} >{tweet.content}</li>
+    ));
+
+    const styles = { color: tweets.length > 2 ? 'red' : 'green' }
+
+    console.log("tweetsHTML= ",tweetsHTML);
+
+    return ( 
+        <div className= { classnames('tweetsPage',className) }>
             <ul>
-                {tweets.map( tweet => (
-                    <li key= {tweet.id} >{tweet.content}</li>
-                ))}
-            </ul>
-            <ul>
-                {mostrarTweets}
+                {tweetsHTML}
             </ul>
         </div>
     );
+
+    //return ( <div className= {`tweetsPage ${className}`}>
+    //            <ul>
+    //                {tweetsHTML}
+    //            </ul>
+    //        </div>);
+
+
 };
 
- 
+ export default TweetsPage;
+
+
+
+
+//async function obtain () {
+//    const datosEnvueltos =  await getTweets();
+//    console.log('datosEnvueltos.data', datosEnvueltos.data);
+//    const mostrarTweetsConLi = datosEnvueltos.data.map((valor) => {
+//        return <li>{valor}</li>
+//    });
+//    console.log('mostrarTweetsConLi', mostrarTweetsConLi);
+//}

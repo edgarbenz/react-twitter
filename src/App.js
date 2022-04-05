@@ -4,7 +4,7 @@ import TweetsPage from './components/tweets/TweetPage'
 function App() {
   return (
     <div className="App">
-      <TweetsPage />
+      <TweetsPage className="page" />
     </div>
   );
 }
