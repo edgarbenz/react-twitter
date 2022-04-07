@@ -1,7 +1,8 @@
 import React from 'react';
-import getTweets from '../../api/tweet';
+import getTweets from '../../../api/tweet';
 import classnames from 'classnames';
 import stylesModule from './TweetPage.module.css';
+import Layout from '../../layout/Layout';
 
 console.log('stylesModule= ',stylesModule);
 
@@ -20,7 +21,6 @@ const TweetsPage = ( {className} ) => {
         });
     },[]);
 
-
     console.log("tweets= ",tweets);
 
     const liStyle = {
@@ -37,11 +37,13 @@ const TweetsPage = ( {className} ) => {
     console.log('stylesModule= ',stylesModule);
 
     return ( 
-        <div className= { classnames(stylesModule.tweetsPage,className) }>
-            <ul>
-                {tweetsHTML}
-            </ul>
-        </div>
+        <Layout title="What's going on Twitter Fake">
+            <div className= { classnames(stylesModule.tweetsPage,className) }>
+                <ul>
+                    {tweetsHTML}
+                </ul>
+            </div>
+        </Layout>
     );
 
     //return ( <div className= {`tweetsPage ${className}`}>

@@ -1,12 +1,13 @@
 import './App.css';
-import TweetsPage from './components/tweets/TweetPage'
-import Button from './components/shared/Button'
+import { TweetsPage, TweetDetailPage, NewTweetPage } from './components/tweets';
+import Button from './components/shared/Button';
 
 function App() {
   return (
     <div className="App">
-      <Button variant="primary">Log in</Button>
-      <TweetsPage className="page" />
+      <TweetsPage  />
+      <TweetDetailPage  />
+      <NewTweetPage  />
     </div>
   );
 }
