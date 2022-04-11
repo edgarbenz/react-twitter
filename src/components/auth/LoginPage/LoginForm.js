@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Button from '../../shared/Button';
 import FormField from '../../shared/FormField'
 //import './LoginForm.css';
@@ -9,7 +8,6 @@ function LoginForm() {
         username: '',
         password: ''
     });
-
     // const handleUsernameChange = evento => {
     // const newCredenciales = {
     //         ...credenciales, // lo que tenga credenciales o se puede poner esto:    password: credenciales.password
@@ -24,13 +22,27 @@ function LoginForm() {
     //     }
     //     setCredenciales(newCredenciales);
     // }
+    // const handleChange =evento => {
+    //     const nombrePropiedad = evento.target.name;
+    //     const newCredenciales = {
+    //         ...credenciales,
+    //         [nombrePropiedad]: evento.target.value
+    //     }
+    //     setCredenciales(newCredenciales);
+    // }
     const handleChange =evento => {
         const nombrePropiedad = evento.target.name;
-        const newCredenciales = {
-            ...credenciales,
-            [nombrePropiedad]: evento.target.value
-        }
-        setCredenciales(newCredenciales);
+
+        setCredenciales( (caca, oldCredenciales, miados) => { // el primer parametro de esta funcion de seteo lo equipa con los datos que tenga en credenciales en el React.setState()
+            console.log('oldCredenciales= ',oldCredenciales);
+            console.log('caca= ',caca)
+            console.log('miados= ',miados)
+            const newCredenciales = {
+                ...caca,
+                [nombrePropiedad]: evento.target.value
+            }
+            return newCredenciales;
+        });
     }
 
      return (
