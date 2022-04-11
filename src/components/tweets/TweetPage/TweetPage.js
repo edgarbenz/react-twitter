@@ -4,9 +4,9 @@ import classnames from 'classnames';
 import stylesModule from './TweetPage.module.css';
 import Layout from '../../layout/Layout';
 
-console.log('stylesModule= ',stylesModule);
+//console.log('stylesModule= ',stylesModule);
 
-const TweetsPage = ( {className} ) => {
+const TweetsPage = ( {className, onMount} ) => {
     const [tweets, setTweets]= React.useState([]);
 
     //React.useEffect( () => {
@@ -19,6 +19,10 @@ const TweetsPage = ( {className} ) => {
         getTweets().then(datos => {
             setTweets(datos);
         });
+    },[]);
+
+    React.useEffect( () => {
+        onMount("Que pex.. ");
     },[]);
 
     console.log("tweets= ",tweets);
