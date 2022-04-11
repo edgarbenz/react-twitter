@@ -24,7 +24,6 @@ function LoginForm() {
     //     }
     //     setCredenciales(newCredenciales);
     // }
-
     const handleChange =evento => {
         const nombrePropiedad = evento.target.name;
         const newCredenciales = {
