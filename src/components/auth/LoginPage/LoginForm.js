@@ -1,13 +1,69 @@
 import React from 'react';
 import Button from '../../shared/Button';
 import FormField from '../../shared/FormField'
+import classNames from 'classnames';
+
 //import './LoginForm.css';
 
-function LoginForm() {
-    const [credenciales, setCredenciales] = React.useState({
-        username: '',
-        password: ''
-    });
+function LoginForm( {onSubmitt, isLoggedd} ) {
+    const [credenciales, setCredenciales] = React.useState({ username: '', password: '' });
+
+    const handleChange = evento => {
+        const nombrePropiedad = evento.target.name;
+        setCredenciales( (oldCredenciales) => { // el primer parametro de esta funcion de seteo lo equipa con los datos que tenga en credenciales en el React.setState()
+            const newCredenciales = {
+                ...oldCredenciales,
+                [nombrePropiedad]: evento.target.value
+            }
+            return newCredenciales;
+        });
+    }
+    const handleSubmit = (evento) => { // esta funcion del manejador onSubmit de form de javascript, manda un parametro evento que contiene los datos que esta enviando el formulario
+        evento.preventDefault();
+        
+        const accessToken = onSubmitt(credenciales).then( () => {
+            console.log('accessToken en LoginForm = ',accessToken)
+            window.localStorage.setItem('logged',true)
+            isLoggedd(true);
+
+        }).catch( (error)=> { 
+            console.log('Hubo un error de autenticacion, ',error); 
+            window.localStorage.setItem('logged',false)
+            isLoggedd(false);
+        });
+        
+    }
+
+     return (
+        <form className="loginForm" onSubmit={handleSubmit}>
+            <FormField
+                type="text"
+                name="username"
+                label="phone, email or username"
+                className= {classNames('loginForm-field', {
+                    empty: !credenciales.username,
+                })}
+                value= {credenciales.username}
+                onChange = {handleChange}
+            />
+            <FormField
+                type="password"
+                name="password"
+                label="password"
+                className="loginForm-field"
+                value= {credenciales.password}
+                onChange = {handleChange}
+            />
+            <Button type="submit" className="loginForm-submit" variant="primary" 
+                    disabled={!credenciales.username || !credenciales.password}>
+                Log in
+            </Button>
+        </form>
+    );
+}
+
+export default LoginForm;
+
     // const handleUsernameChange = evento => {
     // const newCredenciales = {
     //         ...credenciales, // lo que tenga credenciales o se puede poner esto:    password: credenciales.password
@@ -30,44 +86,3 @@ function LoginForm() {
     //     }
     //     setCredenciales(newCredenciales);
     // }
-    const handleChange =evento => {
-        const nombrePropiedad = evento.target.name;
-
-        setCredenciales( (caca, oldCredenciales, miados) => { // el primer parametro de esta funcion de seteo lo equipa con los datos que tenga en credenciales en el React.setState()
-            console.log('oldCredenciales= ',oldCredenciales);
-            console.log('caca= ',caca)
-            console.log('miados= ',miados)
-            const newCredenciales = {
-                ...caca,
-                [nombrePropiedad]: evento.target.value
-            }
-            return newCredenciales;
-        });
-    }
-
-     return (
-        <form className="loginForm">
-            <FormField
-                type="text"
-                name="username"
-                label="phone, email or username"
-                className="loginForm-field"
-                value= {credenciales.username}
-                onChange = {handleChange}
-            />
-            <FormField
-                type="password"
-                name="password"
-                label="password"
-                className="loginForm-field"
-                value= {credenciales.password}
-                onChange = {handleChange}
-            />
-            <Button type="submit" className="loginForm-submit" variant="primary">
-                Log in
-            </Button>
-        </form>
-    );
-}
-
-export default LoginForm;

@@ -6,7 +6,7 @@ import Layout from '../../layout/Layout';
 
 //console.log('stylesModule= ',stylesModule);
 
-const TweetsPage = ( {className, onMount} ) => {
+const TweetsPage = ( {className} ) => {
     const [tweets, setTweets]= React.useState([]);
 
     //React.useEffect( () => {
@@ -21,9 +21,9 @@ const TweetsPage = ( {className, onMount} ) => {
         });
     },[]);
 
-    React.useEffect( () => {
-        onMount("Que pex.. ");
-    },[]);
+    // React.useEffect( () => {
+    //     onMount("Que pex.. ");
+    // },[]);
 
     console.log("tweets= ",tweets);
 
