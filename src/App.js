@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      {isLogged ? ( <TweetsPage/>  ) : ( <LoginPage isLogged= {handleLogged}/> )  }
+      {isLogged ? ( <TweetsPage isLogged/>  ) : ( <LoginPage handleLogged= {handleLogged}/> )  }
     </div>
   );
 }

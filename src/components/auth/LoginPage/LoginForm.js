@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 //import './LoginForm.css';
 
-function LoginForm( {onSubmitt, isLoggedd} ) {
+function LoginForm( {onSubmitt, handleLogged} ) {
     const [credenciales, setCredenciales] = React.useState({ username: '', password: '' });
 
     const handleChange = evento => {
@@ -24,12 +24,12 @@ function LoginForm( {onSubmitt, isLoggedd} ) {
         const accessToken = onSubmitt(credenciales).then( () => {
             console.log('accessToken en LoginForm = ',accessToken)
             window.localStorage.setItem('logged',true)
-            isLoggedd(true);
+            handleLogged(true);
 
         }).catch( (error)=> { 
             console.log('Hubo un error de autenticacion, ',error); 
             window.localStorage.setItem('logged',false)
-            isLoggedd(false);
+            handleLogged(false);
         });
         
     }

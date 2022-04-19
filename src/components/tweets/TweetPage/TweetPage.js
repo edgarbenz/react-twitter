@@ -6,7 +6,7 @@ import Layout from '../../layout/Layout';
 
 //console.log('stylesModule= ',stylesModule);
 
-const TweetsPage = ( {className} ) => {
+const TweetsPage = ( {className, ...props} ) => {
     const [tweets, setTweets]= React.useState([]);
 
     //React.useEffect( () => {
@@ -41,7 +41,7 @@ const TweetsPage = ( {className} ) => {
     console.log('stylesModule= ',stylesModule);
 
     return ( 
-        <Layout title="What's going on Twitter Fake">
+        <Layout title="What's going on Twitter Fake" {...props}>
             <div className= { classnames(stylesModule.tweetsPage,className) }>
                 <ul>
                     {tweetsHTML}

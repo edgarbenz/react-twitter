@@ -3,9 +3,9 @@ import classnames from 'classnames';
 import Layout from '../../layout/Layout';
 import './NewTweetPage.css';
 
-const NewTweetPage = ( {className} ) => {
+const NewTweetPage = ( {isLogged} ) => {
     return ( 
-        <Layout title="What are you thinking?">
+        <Layout title="What are you thinking?" isLogged>
             <div>
                 <ul>
                 NewTweetPage
