@@ -10,13 +10,13 @@ function App() {
   //asiFuncionaAxios();
 
   const [isLogged,setIsLogged] = React.useState(false);
-  // console.log('el estado isLogged en App.js= ',isLogged);
+ console.log('el estado isLogged en App.js= ',isLogged);
 
-  const handleLogged = yesOrNot => setIsLogged(yesOrNot);
+  const handleSetIsLogged = yesOrNot => setIsLogged(yesOrNot);
 
   return (
     <div className="App">
-      {isLogged ? ( <TweetsPage isLogged/>  ) : ( <LoginPage handleLogged= {handleLogged}/> )  }
+      {isLogged ? ( <TweetsPage isLogged/>  ) : ( <LoginPage handleSetIsLogged= {handleSetIsLogged}/> )  }
     </div>
   );
 }

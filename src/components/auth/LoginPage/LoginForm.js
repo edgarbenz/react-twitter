@@ -2,11 +2,14 @@ import React from 'react';
 import Button from '../../shared/Button';
 import FormField from '../../shared/FormField'
 import classNames from 'classnames';
-
 //import './LoginForm.css';
 
-function LoginForm( {onSubmitt, handleLogged} ) {
+function LoginForm( {login, handleSetIsLogged, handleSetError} ) {
     const [credenciales, setCredenciales] = React.useState({ username: '', password: '' });
+    
+    const [isLoading, setIsLoading] =  React.useState( false );
+    console.log('isLoading= ',isLoading)
+
 
     const handleChange = evento => {
         const nombrePropiedad = evento.target.name;
@@ -20,18 +23,21 @@ function LoginForm( {onSubmitt, handleLogged} ) {
     }
     const handleSubmit = (evento) => { // esta funcion del manejador onSubmit de form de javascript, manda un parametro evento que contiene los datos que esta enviando el formulario
         evento.preventDefault();
+        console.log('evento en handleSubmit es= ',evento)
         
-        const accessToken = onSubmitt(credenciales).then( () => {
-            console.log('accessToken en LoginForm = ',accessToken)
-            window.localStorage.setItem('logged',true)
-            handleLogged(true);
-
-        }).catch( (error)=> { 
-            console.log('Hubo un error de autenticacion, ',error); 
-            window.localStorage.setItem('logged',false)
-            handleLogged(false);
+        login(credenciales).then( resultado => {
+              //show o not the button
+            (resultado == true) ? setIsLoading(true) : setIsLoading(false);
+            (resultado == true) ? handleSetIsLogged(resultado): handleSetError(resultado);
+            setCredenciales( { username: '', password: '' } )
+            // console.log('resultadoBooleano',resultadoBooleano)
+            // setCredenciales( { username: '', password: '' } )
+            // console.log('esta instruccion esta despues del setCredenciales');
+            // handleSetIsLogged(resultadoBooleano)
         });
-        
+        // const AmILogged = login(credenciales);
+        // console.log('AmILogged= ',AmILogged)
+        // handleSetIsLogged(AmILogged);  // desde aqui seteo ya sea en false o verdadero el isLogged que esta en App.js
     }
 
      return (
@@ -55,7 +61,7 @@ function LoginForm( {onSubmitt, handleLogged} ) {
                 onChange = {handleChange}
             />
             <Button type="submit" className="loginForm-submit" variant="primary" 
-                    disabled={!credenciales.username || !credenciales.password}>
+                    disabled={ isLoading || !credenciales.username || !credenciales.password }>
                 Log in
             </Button>
         </form>

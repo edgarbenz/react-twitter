@@ -3,12 +3,18 @@ import LoginForm from './LoginForm';
 import {login} from '../../../api/auth'
 //import './LoginPage.css';
 
-function LoginPage( {handleLogged} ) {
+function LoginPage( {handleSetIsLogged} ) {
     // const handleLog =  bol => isLogged(true);
+    const [error,setError] = React.useState( null );
+    const handleSetError = (error) => { setError(error) };
+
+    const resetError = () => setError(null);
+
     return (
         <div className='loginPage'>
             <h1 className='loginPage-title'>Log in to Twitter</h1>
-            <LoginForm onSubmitt= { login } handleLogged= {handleLogged} />
+            <LoginForm login= { login } handleSetIsLogged= {handleSetIsLogged} handleSetError= {handleSetError}/>
+            {error && <div onClick={resetError} className="loginPage-error">Error de autenticacion: {error.message}</div>}
         </div>
     );
 }

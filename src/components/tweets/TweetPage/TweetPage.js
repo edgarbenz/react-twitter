@@ -15,7 +15,6 @@ const TweetsPage = ( {className, ...props} ) => {
     //    });
     //},[]);
     React.useEffect( () => {
-        console.log("entro react.useEffect")
         getTweets().then(datos => {
             setTweets(datos);
         });
@@ -24,8 +23,6 @@ const TweetsPage = ( {className, ...props} ) => {
     // React.useEffect( () => {
     //     onMount("Que pex.. ");
     // },[]);
-
-    console.log("tweets= ",tweets);
 
     const liStyle = {
         color: 'blue'
@@ -36,9 +33,6 @@ const TweetsPage = ( {className, ...props} ) => {
     ));
 
     //const styles = { color: tweets.length > 2 ? 'red' : 'green' }
-
-    console.log("tweetsHTML= ",tweetsHTML);
-    console.log('stylesModule= ',stylesModule);
 
     return ( 
         <Layout title="What's going on Twitter Fake" {...props}>
