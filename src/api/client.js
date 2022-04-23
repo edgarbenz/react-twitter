@@ -4,8 +4,13 @@ const client = axios.create( {baseURL:process.env.REACT_APP_API_BASE_URL} ) // {
 
 const setAuthorizationHeader = token => {
     client.defaults.headers.common['Authorization'] = `Bearer ${token}`; //setea el client.defaults.headers.common['authorization'] a Bearer token en cuestion
-     console.log("client.defaults.headers.common['Authorization']= ",client.defaults.headers.common['Authorization'])
-     console.log("client= ",client);
+    //  console.log("client.defaults.headers.common['Authorization']= ",client.defaults.headers.common['Authorization'])
+    //  console.log("client= ",client);
+}
+export const removeAuthorizationHeader = () => {
+    console.log("Antes de borrarlo ... client.defaults.headers.common['Authorization']= ",client.defaults.headers.common['Authorization'])
+    delete client.defaults.headers.common['Authorization'];
+    console.log("client.defaults.headers.common['Authorization']= ",client.defaults.headers.common['Authorization'])
 }
 
 client.interceptors.response.use(  // this function can receive 2 functions in that order

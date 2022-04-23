@@ -3,7 +3,6 @@ import getTweets from '../../../api/tweet';
 import classnames from 'classnames';
 import stylesModule from './TweetPage.module.css';
 import Layout from '../../layout/Layout';
-
 //console.log('stylesModule= ',stylesModule);
 
 const TweetsPage = ( {className, ...props} ) => {
